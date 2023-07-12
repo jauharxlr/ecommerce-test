@@ -2,7 +2,7 @@
 
 **Implemented features**
 <ul>
-<li>Implemented SOA with API Gateway Architecture with zuul.</li>
+<li>Implemented SOA with API Gateway Architecture (Zuul).</li>
 <li>Implemented Eureka Discovery for load balancing.</li>
 <li>Created a highly configurable reusable security module (library project).</li>
 <li>Added JWT Authentication for incoming requests from external source.</li>

@@ -28,7 +28,7 @@ public class RestTemplateConfig {
                 HttpHeaders headers = request.getHeaders();
                 headers.set("Authorization", getBasicToken());
                 HttpServletRequest incomingRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-                headers.set("username", jwtUtil.extractUsername(incomingRequest));
+                headers.set("username", jwtUtil.extractUsernameFromRequest(incomingRequest));
                 return execution.execute(request, body);
             }));
         }
