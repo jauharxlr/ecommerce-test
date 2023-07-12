@@ -1,0 +1,6 @@
+/derby.log
+/db_bks_bootstore/
+/db_bks_user/
+/.idea/
+/logs/
+**/target/
