@@ -24,7 +24,7 @@ public class CartController {
 
     private final CartService cartService;
 
-    @ApiOperation(value = "Update a user by userId", notes = "Requires JWT authorization")
+    @ApiOperation(value = "add to cart", notes = "Requires JWT authorization")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "JWT token", required = true,
                     dataType = "string", paramType = "header")
@@ -34,7 +34,7 @@ public class CartController {
         cartService.addToCart(authentication.getName(), addToCartRequestDto);
         return ResponseEntity.ok().build();
     }
-    @ApiOperation(value = "Get cart of logged in user", notes = "Requires JWT authorization")
+    @ApiOperation(value = "get cart", notes = "Requires JWT authorization")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "JWT token", required = true,
                     dataType = "string", paramType = "header")

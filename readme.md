@@ -43,6 +43,9 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 <ul>
 <li>cd to project root directory and run <code>mvn clean install</code> </li>
 <li>cd to discovery-service folder and run <code>mvn spring-boot:run</code></li>
+<li>cd to user-service folder and run <code>mvn spring-boot:run</code></li>
+<li>cd to bookstore-service folder and run <code>mvn spring-boot:run</code></li>
+<li>cd to api-gateway folder and run <code>mvn spring-boot:run</code></li>
 </ul>
 
 **Docker Setup**
