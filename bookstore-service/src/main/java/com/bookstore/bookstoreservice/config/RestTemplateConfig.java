@@ -3,6 +3,7 @@ package com.bookstore.bookstoreservice.config;
 import com.bookstore.securitymodule.configurations.AppSecurityConfig;
 import com.bookstore.securitymodule.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Collections;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class RestTemplateConfig {
@@ -28,7 +30,8 @@ public class RestTemplateConfig {
                 HttpHeaders headers = request.getHeaders();
                 headers.set("Authorization", getBasicToken());
                 HttpServletRequest incomingRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-                headers.set("username", jwtUtil.extractUsernameFromRequest(incomingRequest));
+                headers.set("username", incomingRequest.getHeader("username"));
+               log.info(headers.toSingleValueMap().toString());
                 return execution.execute(request, body);
             }));
         }

@@ -2,6 +2,7 @@ package com.bookstore.bookstoreservice.constant;
 
 public interface AppConstants {
     interface Endpoints {
+        String STORE = "/store";
         String BOOKS = "/books";
         String CART = "/cart";
         String TYPE = "/type";

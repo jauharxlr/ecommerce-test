@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserResponseDto> getUserBy(String emailId) {
+        log.debug(emailId);
         return Optional.ofNullable(UserResponseDto.toDto(userRepository.findByEmailId(emailId).orElseThrow(() ->
                 new UserException(AppConstants.ErrorMessage.USER_NOT_FOUND))));
     }

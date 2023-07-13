@@ -49,7 +49,7 @@ public class UserController {
     })
     @GetMapping("/{emailId}")
     public ResponseEntity<UserResponseDto> getUserBy(@ApiIgnore Authentication authentication, @PathVariable String emailId){
-        log.info("Get user #{}", emailId, authentication.getName());
+        log.info("Get user emailId={} auth={}", emailId, authentication.getName());
         Optional<UserResponseDto> userResponseDtoOptional = userService.getUserBy(authentication.getName());
         if(userResponseDtoOptional.isPresent()){
             UserResponseDto userResponseDto = userService.getUserBy(emailId).get();

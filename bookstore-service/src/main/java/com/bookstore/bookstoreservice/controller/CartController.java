@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(AppConstants.Endpoints.CART)
+@RequestMapping(AppConstants.Endpoints.STORE + AppConstants.Endpoints.CART)
 public class CartController {
 
     private final CartService cartService;

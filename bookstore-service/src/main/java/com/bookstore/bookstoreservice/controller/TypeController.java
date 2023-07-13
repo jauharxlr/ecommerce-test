@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(AppConstants.Endpoints.TYPE)
+@RequestMapping(AppConstants.Endpoints.STORE + AppConstants.Endpoints.TYPE)
 public class TypeController {
 
     private final TypeService typeService;

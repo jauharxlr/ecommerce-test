@@ -39,13 +39,17 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 <li>User Cart with add, update quantity, reduce/delete book from cart, clear whole cart, get cart and finally checkout with promotional discount functionality</li>
 </ul>
 
-**Setup**
+**Local Setup**
 <ul>
 <li>cd to project root directory and run <code>mvn clean install</code> </li>
 <li>cd to discovery-service folder and run <code>mvn spring-boot:run</code></li>
-<li>cd to user-service folder and run <code>mvn spring-boot:run</code></li>
-<li>cd to bookstore-service folder and run <code>mvn spring-boot:run</code></li>
-<li>cd to api-gateway folder and run <code>mvn spring-boot:run</code></li>
+</ul>
+
+**Docker Setup**
+<ul>
+<li>cd to discovery-service folder and run <br/>
+<code>mvn clean install</code><br/>
+<code>docker compose up</code>
 </ul>
 
 **Swagger Documentation**

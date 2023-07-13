@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(AppConstants.Endpoints.BOOKS)
+@RequestMapping(AppConstants.Endpoints.STORE + AppConstants.Endpoints.BOOKS)
 public class BooksController {
 
     private final BookService bookService;

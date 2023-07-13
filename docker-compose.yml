@@ -1,0 +1,45 @@
+version: '3.3'
+services:
+  discovery-service:
+    container_name: DISCOVERY-SERVICE
+    build:
+      context: ./discovery-service/
+    ports:
+      - 8761:8080
+
+  user-service:
+    container_name: USER-SERVICE
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://DISCOVERY-SERVICE:8080/eureka/
+    build:
+      context: ./user-service/
+    ports:
+      - 8083:8080
+    depends_on:
+      - discovery-service
+
+  bookstore-service:
+    container_name: BOOKSTORE-SERVICE
+    environment:
+      - endpoints.getuserdetails=http://USER-SERVICE:8080/user/
+      - eureka.client.serviceUrl.defaultZone=http://DISCOVERY-SERVICE:8080/eureka/
+    build:
+      context: ./bookstore-service/
+    ports:
+      - 8082:8080
+    depends_on:
+      - discovery-service
+
+  api-gateway:
+    container_name: API-GATEWAY
+    environment:
+      - endpoints.getuserdetails=http://USER-SERVICE:8080/user/
+      - eureka.client.serviceUrl.defaultZone=http://DISCOVERY-SERVICE:8080/eureka/
+    build:
+      context: ./api-gateway/
+    ports:
+      - 8080:8080
+    depends_on:
+      - discovery-service
+      - user-service
+      - bookstore-service
