@@ -51,7 +51,7 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 
 **Docker Setup**
 <ul>
-<li>cd to discovery-service folder and run <br/>
+<li>cd to root folder and run <br/>
 <code>mvn clean install</code><br/>
 <code>docker compose up</code>
 </ul>
