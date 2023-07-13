@@ -38,7 +38,7 @@ public class AuthRequestFilter extends OncePerRequestFilter {
         String jwt = null;
 
         if (appSecurityConfig.getIsJwtAuthEnabled()) {
-            username = jwtUtil.extractUsername(request);
+            username = jwtUtil.extractUsernameFromRequest(request);
             jwt = jwtUtil.getJwtToken(request);
         }
         if (appSecurityConfig.getIsBasicAuthEnabled() && !Optional.ofNullable(username).isPresent()) {

@@ -25,7 +25,7 @@ public class JwtUtil {
 			return null;
 		}
 	}
-	public String extractUsername(HttpServletRequest request){
+	public String extractUsernameFromRequest(HttpServletRequest request){
 		final String authorizationHeader = request.getHeader("Authorization");
 		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
 			return extractUsername(authorizationHeader.substring(7));

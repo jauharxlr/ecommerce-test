@@ -36,7 +36,7 @@ public class BasicAuthRequestFilter extends ZuulFilter {
             ctx.addZuulRequestHeader("Authorization", appSecurityConfig.getBasicAuthToken());
         }
         if(appSecurityConfig.getIsJwtAuthEnabled()){
-            ctx.addZuulRequestHeader("username", jwtUtil.extractUsername(ctx.getRequest()));
+            ctx.addZuulRequestHeader("username", jwtUtil.extractUsernameFromRequest(ctx.getRequest()));
         }
         return null;
     }
