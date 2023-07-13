@@ -41,6 +41,7 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 
 **Local Setup**
 <ul>
+<li>Make sure java 8 and maven is installed.</li>
 <li>cd to project root directory and run <code>mvn clean install</code> </li>
 <li>cd to discovery-service folder and run <code>mvn spring-boot:run</code></li>
 <li>cd to user-service folder and run <code>mvn spring-boot:run</code></li>
