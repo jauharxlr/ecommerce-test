@@ -61,3 +61,12 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 <li>User service: <a target="_blank">https://localhost:8083/swagger-ui/</a></li>
 <li>Book-Store service: <a target="_blank">https://localhost:8082/swagger-ui/</a></li>
 </ul>
+
+**Default admin detail**
+
+<code>
+{
+    "emailId":"admin@bookstore.com",
+    "password":"admin123"
+}
+</code>
