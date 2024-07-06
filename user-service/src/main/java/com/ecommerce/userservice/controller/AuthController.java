@@ -6,6 +6,7 @@ import com.ecommerce.userservice.constant.AppConstants;
 import com.ecommerce.userservice.exception.UserException;
 import com.ecommerce.userservice.model.dto.AuthRequestDto;
 import com.ecommerce.userservice.model.dto.AuthResponseDto;
+import com.ecommerce.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final SecurityUserService securityUserService;
     private final JwtUtil jwtUtil;
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<AuthResponseDto> authenticate(@Valid @RequestBody AuthRequestDto authRequestDto) {
@@ -35,7 +37,8 @@ public class AuthController {
         }
         final UserDetails userDetails = securityUserService.loadUserByUsername(authRequestDto.getEmailId());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(AuthResponseDto.builder().jwt(jwt).build());
+
+        return ResponseEntity.ok(AuthResponseDto.builder().userDetails(userService.getUserBy(authRequestDto.getEmailId()).get()).jwt(jwt).build());
     }
 
 }
