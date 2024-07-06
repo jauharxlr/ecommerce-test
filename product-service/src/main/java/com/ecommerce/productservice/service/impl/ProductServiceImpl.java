@@ -1,6 +1,6 @@
 package com.ecommerce.productservice.service.impl;
 
-import com.ecommerce.productservice.repository.BookRepository;
+import com.ecommerce.productservice.repository.ProductRepository;
 import com.ecommerce.productservice.constant.AppConstants;
 import com.ecommerce.productservice.exception.BookException;
 import com.ecommerce.productservice.model.dto.ProductRequestDto;
@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final BookRepository bookRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public ProductResponseDto addProduct(ProductRequestDto productRequestDto) {
         ProductEntity productEntity = productRequestDto.toEntity();
-        bookRepository.save(productEntity);
+        productRepository.save(productEntity);
         return ProductResponseDto.fromEntity(productEntity);
     }
 
@@ -35,13 +35,13 @@ public class ProductServiceImpl implements ProductService {
         productEntity.setUpdatedAt(LocalDateTime.now());
         productEntity.setDescription(productRequestDto.getDescription());
         productEntity.setPrice(productRequestDto.getPrice());
-        bookRepository.save(productEntity);
+        productRepository.save(productEntity);
         return ProductResponseDto.fromEntity(productEntity);
     }
 
     @Override
     public void deleteProduct(Long id) {
-        bookRepository.delete(get(id));
+        productRepository.delete(get(id));
     }
 
     @Override
@@ -51,20 +51,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponseDto> getAllProducts() {
-        return bookRepository.findAll().stream()
+        return productRepository.findAll().stream()
                 .map(ProductResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<ProductResponseDto> getAllProductsByName(String name) {
-        return bookRepository.findByNameContaining(name).stream()
+        return productRepository.findByNameContaining(name).stream()
                 .map(ProductResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
     private ProductEntity get(Long id){
-        return bookRepository.findById(id).orElseThrow(()->
+        return productRepository.findById(id).orElseThrow(()->
                 new BookException(AppConstants.ErrorMessage.PRODUCT_NOT_FOUND));
     }
 

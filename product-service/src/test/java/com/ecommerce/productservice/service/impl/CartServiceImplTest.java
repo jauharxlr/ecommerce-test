@@ -45,7 +45,7 @@ class CartServiceImplTest {
 
     @Test
     void getCart_shouldReturnCartResponseDto() {
-        CartEntity cartEntity = CartEntity.builder().type("fiction").price(10.0).quantity(1).build();
+        CartEntity cartEntity = CartEntity.builder().price(10.0).quantity(1).build();
         List<CartEntity> cartEntityList = Arrays.asList(cartEntity);
         when(cartRepository.findAllByUsername(anyString())).thenReturn(cartEntityList);
         CartResponseDto cartResponseDto = cartService.getCart("username");
@@ -54,7 +54,7 @@ class CartServiceImplTest {
 
     @Test
     void deleteFromCart_shouldDeleteCartEntity() {
-        CartEntity cartEntity = CartEntity.builder().type("fiction").price(10.0).quantity(1).build();
+        CartEntity cartEntity = CartEntity.builder().price(10.0).quantity(1).build();
         Optional<CartEntity> cartEntityOptional = Optional.of(cartEntity);
         when(cartRepository.findByUsernameAndId(any(), any())).thenReturn(cartEntityOptional);
         cartService.deleteFromCart(any(), any(), 1);
@@ -63,7 +63,7 @@ class CartServiceImplTest {
 
     @Test
     void checkout_shouldReturnCheckoutResponseDto() {
-        CartEntity cartEntity = CartEntity.builder().type("fiction").price(10.0).quantity(1).build();
+        CartEntity cartEntity = CartEntity.builder().price(10.0).quantity(1).build();
         List<CartEntity> cartEntityList = Collections.singletonList(cartEntity);
         when(cartRepository.findAllByUsername(any())).thenReturn(cartEntityList);
         List<CartResponseDto.CartedItems> cartedItems = Arrays.asList(CartResponseDto.CartedItems.fromEntity(cartEntity));

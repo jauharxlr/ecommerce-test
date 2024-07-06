@@ -3,7 +3,7 @@ package com.ecommerce.productservice.service.impl;
 import com.ecommerce.productservice.model.dto.ProductRequestDto;
 import com.ecommerce.productservice.model.dto.ProductResponseDto;
 import com.ecommerce.productservice.model.entity.ProductEntity;
-import com.ecommerce.productservice.repository.BookRepository;
+import com.ecommerce.productservice.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 class ProductServiceImplTest {
 
     @Mock
-    private BookRepository bookRepository;
+    private ProductRepository productRepository;
 
     @InjectMocks
     private ProductServiceImpl bookService;
@@ -31,9 +31,9 @@ class ProductServiceImplTest {
     @Test
     void addBook_shouldSaveBookEntity() {
         ProductRequestDto productRequestDto = new ProductRequestDto();
-        when(bookRepository.save(any())).thenReturn(new ProductEntity());
+        when(productRepository.save(any())).thenReturn(new ProductEntity());
         bookService.addProduct(productRequestDto);
-        verify(bookRepository, times(1)).save(any());
+        verify(productRepository, times(1)).save(any());
     }
 
     @Test
@@ -42,23 +42,24 @@ class ProductServiceImplTest {
         ProductRequestDto productRequestDto = new ProductRequestDto();
         ProductEntity existingProductEntity = ProductEntity.builder().price(100.0).name("apple").build();
         existingProductEntity.setId(bookId);
-        when(bookRepository.save(any())).thenReturn(existingProductEntity);
+        when(productRepository.findById(any())).thenReturn(Optional.of(existingProductEntity));
+        when(productRepository.save(any())).thenReturn(existingProductEntity);
         bookService.updateProduct(bookId, productRequestDto);
-        verify(bookRepository, times(1)).save(any());
+        verify(productRepository, times(1)).save(any());
     }
 
     @Test
     void deleteBook_shouldDeleteExistingBookEntity() {
         ProductEntity existingProductEntity = new ProductEntity();
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(existingProductEntity));
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(existingProductEntity));
         bookService.deleteProduct(1L);
-        verify(bookRepository, times(1)).delete(existingProductEntity);
+        verify(productRepository, times(1)).delete(existingProductEntity);
     }
 
     @Test
     void getBook_shouldReturnBookResponseDto() {
         ProductEntity existingProductEntity = ProductEntity.builder().price(100.0).name("apple").build();
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(existingProductEntity));
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(existingProductEntity));
         ProductResponseDto productResponseDto = bookService.getProduct(1L);
         Assertions.assertThat(productResponseDto).isNotNull();
     }
@@ -66,7 +67,7 @@ class ProductServiceImplTest {
     @Test
     void getAllBooks_shouldReturnListOfBookResponseDto() {
         List<ProductEntity> productEntityList = Arrays.asList(ProductEntity.builder().price(100.0).name("apple").build());
-        when(bookRepository.findAll()).thenReturn(productEntityList);
+        when(productRepository.findAll()).thenReturn(productEntityList);
         List<ProductResponseDto> productResponseDtoList = bookService.getAllProducts();
         Assertions.assertThat(productResponseDtoList).isNotEmpty();
     }
@@ -75,7 +76,7 @@ class ProductServiceImplTest {
     @Test
     void getAllBooksByName_shouldReturnListOfBookResponseDto() {
         List<ProductEntity> productEntityList = Arrays.asList(ProductEntity.builder().price(100.0).name("apple").build());
-        when(bookRepository.findByNameContaining(anyString())).thenReturn(productEntityList);
+        when(productRepository.findByNameContaining(anyString())).thenReturn(productEntityList);
         List<ProductResponseDto> productResponseDtoList = bookService.getAllProductsByName("book");
         Assertions.assertThat(productResponseDtoList).isNotEmpty();
     }
