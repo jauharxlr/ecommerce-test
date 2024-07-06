@@ -1,4 +1,4 @@
-<h1>Book-Store Test Project</h1>
+<h1>Ecommerce Test Project</h1>
 
 Considering the fact that the requirement is quite simple and hence doesn't 
 require a big software infrastructure; But taking this as a great opportunity 
@@ -7,19 +7,20 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 <ul>
 <li>Implemented SOA with API Gateway Architecture (Zuul).</li>
 <li>Implemented Eureka Discovery for load balancing.</li>
-<li>Created a highly configurable reusable security module (library project).</li>
+<li>Created a highly configurable reusable security module.</li>
 <li>Added JWT Authentication for incoming requests from external source.</li>
 <li>Added Basic Authentication between all service calls.</li>
 <li>Added CORS filter.</li>
-<li>Configured RestTemplete bean to add basic authentication authorization header by default.</li>
+<li>Configured load balanced RestTemplete bean to add basic authentication authorization header by default.</li>
 <li>Added logging for all services, also configured slueth for marking traceId and spanId.</li>
 <li>Added user role based access filter with spring security.</li>
 <li>Configured to use derby database (not recommended for production use).</li>
 <li>Added JPA Repositories for data persistence.</li>
 <li>Added incoming request validations with javax.validation.</li>
-<li>Written Mockito test cases (Only for service classes in BookStore service).</li>
+<li>Written Mockito test cases (Only for service classes in Product service).</li>
 <li>Added swagger documentation.</li>
 <li>Add Parent POM to hold modules and dependency versions</li>
+<li>Configured listener component to load admin details on fresh start of the app</li>
 </ul>
 
 **What more could be done**
@@ -33,10 +34,8 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 **Features**
 <ul>
 <li>User registration, authentication, update and get functionality</li>
-<li>Type(classification) add, edit, update and get functionality</li>
-<li>Type(classification) also comes with related promosional code and percentage of discount</li>
-<li>Book add, edit, update and get by id, get all, filter by author, type and name functionality</li>
-<li>User Cart with add, update quantity, reduce/delete book from cart, clear whole cart, get cart and finally checkout with promotional discount functionality</li>
+<li>Product add, edit, update and get by id, get all and search by name functionality</li>
+<li>User Cart with add, update quantity, reduce/delete product from cart, clear whole cart, get cart and finally checkout</li>
 </ul>
 
 **Local Setup**
@@ -45,25 +44,18 @@ to reflect my knowledge on the domain, I have added some really interesting capa
 <li>cd to project root directory and run <code>mvn clean install</code> </li>
 <li>cd to discovery-service folder and run <code>mvn spring-boot:run</code></li>
 <li>cd to user-service folder and run <code>mvn spring-boot:run</code></li>
-<li>cd to bookstore-service folder and run <code>mvn spring-boot:run</code></li>
+<li>cd to product-service folder and run <code>mvn spring-boot:run</code></li>
 <li>cd to api-gateway folder and run <code>mvn spring-boot:run</code></li>
-</ul>
-
-**Docker Setup**
-<ul>
-<li>cd to root folder and run <br/>
-<code>mvn clean install</code><br/>
-<code>docker compose up</code>
 </ul>
 
 **Swagger Documentation**
 <ul>
 <li>User service: <a target="_blank">https://localhost:8083/swagger-ui/</a></li>
-<li>Book-Store service: <a target="_blank">https://localhost:8082/swagger-ui/</a></li>
+<li>Product service: <a target="_blank">https://localhost:8082/swagger-ui/</a></li>
 </ul>
 
 **Default admin detail**<br/>
 <code>{
-    "emailId":"admin@bookstore.com",
+    "emailId":"admin@ecommerce.com",
     "password":"admin123"
 }</code>
